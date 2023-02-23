@@ -4,7 +4,7 @@ ROOT="/home/aditi/mma_runs"
 
 DATA="${ROOT}/data/vi_en/data-bin"
 
-EXPT="${ROOT}/experiments/vi_en"
+EXPT="${ROOT}/experiments/en_vi"
 mkdir -p ${EXPT}
 
 FAIRSEQ="${ROOT}/mma"
