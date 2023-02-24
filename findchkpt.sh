@@ -28,10 +28,10 @@ generate_single_path(){
     ckpt_upper=$2
     ckpt_lower=$3
 
-    name="lmloss_latency_0.1_0.3_0.2" #"latency_${lambda}"
+    name="lmloss_latency_0.1_0.15_0.2" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
-    name="lmloss_pretraineden-vi_0.3"
+#     name="lmloss_pretraineden-vi_0.3"
     EXPT="${EXP}/infinite/${name}"
     RES="${EXPT}/results"
     mkdir -p "${RES}"
@@ -97,4 +97,4 @@ generate_single_path(){
 
 ##############
 # generate_single_path [split] [upper] [lower]
-generate_single_path valid 50 29
+generate_single_path valid 50 30
