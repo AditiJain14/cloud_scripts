@@ -166,7 +166,7 @@ mma_il_lm_from_chkpt(){
     lambda=$1
     file=$2
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.1_withchkpt${lambda}"
+    name="lmloss_latency_0.1_0.3_withchkpt${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -174,7 +174,7 @@ mma_il_lm_from_chkpt(){
     mkdir -p ${CKPT} ${TBOARD}
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
-    --source-lang vi --target-lang en \
+    --source-lang en --target-lang vi \
     --log-format simple --log-interval 50 \
     --arch transformer_monotonic_iwslt_de_en \
     --user-dir "${USR}" \
@@ -200,14 +200,14 @@ mma_il_lm_from_chkpt(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 6750 --update-freq 2 \
+    --max-tokens 3600 --update-freq 2 \
     --best-checkpoint-metric "ppl" \
-    --keep-last-epochs 12 \
+    --keep-last-epochs 20 \
     --add-language-model \
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 3000 \
-    --token-scale 0.1 --sentence-scale 0.1 \
-    --wandb-project LM_Adaptive \
+    --pretrain-steps 1500 \
+    --token-scale 0.1 --sentence-scale 0.3 \
+    --wandb-project LM_Adaptive_EnVi \
     --restore-file $file \
     --empty-cache-freq 45 --max-epoch 50\
     | tee -a ${TBOARD}/train_log.txt
@@ -430,8 +430,8 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # wait_info_adaptive_train
 
-mma_il_lm 0.3
+# mma_il_lm 0.3
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
-# mma_il_lm_from_chkpt 0.2 "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_latency_0.1_0.1forchkpt_0/checkpoints/checkpoint8.pt"
+mma_il_lm_from_chkpt 0.3 "/home/aditi/mma_runs/experiments/vi_en/infinite/lmloss_pretraineden-vi_0/checkpoints/checkpoint9.pt"
