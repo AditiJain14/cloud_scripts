@@ -112,7 +112,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.1en-vi_${lambda}"
+    name="lmloss_latency_0.1_0.3_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -146,15 +146,15 @@ mma_il_lm(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 6750 --update-freq 4 \
+    --max-tokens 4500 --update-freq 3 \
     --best-checkpoint-metric "ppl" \
-    --keep-last-epochs 15 \
+    --keep-last-epochs 25 \
     --add-language-model \
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 6000 \
-    --token-scale 0.1 --sentence-scale 0.1 \
+    --pretrain-steps 3000 \
+    --token-scale 0.1 --sentence-scale 0.3 \
     --wandb-project LM_Adaptive_EnVi \
-    --empty-cache-freq 45 --max-epoch 45\
+    --empty-cache-freq 45 --max-epoch 50\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
     #dont use cbmi loss for getting checkpoints for lambda>0.1, set pretrain-steps high. 
@@ -420,7 +420,7 @@ train_lm_only(){
 
   #--pretrained-lm-path "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_latency_0.1_0.1_0.04/checkpoints/checkpoint_best.pt" \
 ###############################################
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0,1
 
 # mma_il 0.05
 # mma_h
@@ -430,7 +430,7 @@ export CUDA_VISIBLE_DEVICES=1
 
 # wait_info_adaptive_train
 
-mma_il_lm 0.1
+mma_il_lm 0.2
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
