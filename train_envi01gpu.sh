@@ -112,7 +112,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.15_${lambda}"
+    name="lmloss_latency_0.1_0.3_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -154,7 +154,7 @@ mma_il_lm(){
     --pretrain-steps 3000 \
     --token-scale 0.1 --sentence-scale 0.15 \
     --wandb-project LM_Adaptive_EnVi \
-    --empty-cache-freq 45 --max-epoch 50\
+    --empty-cache-freq 45 --max-epoch 55\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
     #dont use cbmi loss for getting checkpoints for lambda>0.1, set pretrain-steps high. 
@@ -430,7 +430,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # wait_info_adaptive_train
 
-mma_il_lm 0.2
+mma_il_lm 0.3
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
