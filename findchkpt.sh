@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
-ROOT="/cs/natlang-expts/aditi/mma_runs"
+ROOT="/home/aditi/mma_runs"
 
 DATA="${ROOT}/data/vi_en/data-bin"
 
-EXP="${ROOT}/experiments/vi_en"
+EXP="${ROOT}/experiments/en_vi"
 
 ###############
 # name="base"
@@ -23,12 +23,12 @@ data="${DATA}"
 # modelfile="${EXPT}/checkpoints"
 
 generate_single_path(){
-    lambda=0.04 #$1
+#     lambda=0.04 #$1
     split=$1
     ckpt_upper=$2
     ckpt_lower=$3
 
-    # name="lmloss_latency_0.1_0.1en-vi_0.2" #"latency_${lambda}"
+    name="lmloss_latency_0.1_0.3_0.2" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
     name="lmloss_pretraineden-vi_0.3"
@@ -97,4 +97,4 @@ generate_single_path(){
 
 ##############
 # generate_single_path [split] [upper] [lower]
-generate_single_path valid 50 40
+generate_single_path valid 50 29
