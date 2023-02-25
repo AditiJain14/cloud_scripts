@@ -166,7 +166,7 @@ mma_il_lm_from_chkpt(){
     lambda=$1
     file=$2
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.0_0.3_withchkpt${lambda}"
+    name="lmloss_latency0_0.0_0.3_withchkpt${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -209,7 +209,7 @@ mma_il_lm_from_chkpt(){
     --token-scale 0.0 --sentence-scale 0.3 \
     --wandb-project LM_Adaptive_EnVi \
     --restore-file $file \
-    --empty-cache-freq 45 --max-epoch 10\
+    --empty-cache-freq 45 --max-epoch 58\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
 
