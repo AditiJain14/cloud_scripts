@@ -434,4 +434,4 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
-mma_il_lm_from_chkpt 0.3 "/home/aditi/mma_runs/experiments/vi_en/infinite/lmloss_pretraineden-vi_0/checkpoints/checkpoint9.pt"
+mma_il_lm_from_chkpt 0.3 "/home/aditi/mma_runs/experiments/en_vi/infinite/lmloss_pretraineden-vi_0/checkpoints/checkpoint9.pt"
