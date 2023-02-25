@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmloss_latency_0.1_0.15_0.2" #"latency_${lambda}"
+    name="lmloss_latency_0.1_0.3_withchkpt0.3" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
 
@@ -42,7 +42,7 @@ generate_single_path(){
 
     # ckpt=average-model.pt
     #ckpt="checkpoint_best.pt"
-    ckpt="avgmodel_46.pt"
+    ckpt="avgmodel_48.pt"
 
     # batched prediction
     python "${FAIRSEQ}/fairseq_cli/generate.py" ${data} \
