@@ -1,9 +1,9 @@
 
-ROOT="/cs/natlang-expts/aditi/mma_runs"
+ROOT="/home/aditi/mma_runs"
 
 DATA="${ROOT}/data/vi_en/data-bin"
 
-EXP="${ROOT}/experiments/vi_en"
+EXP="${ROOT}/experiments/en_vi"
 
 ###############
 # name="base"
@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmloss_pretraineden-vi_0.4" #"latency_${lambda}"
+    name="lmloss_latency_0.1_0.15_0.2" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
 
@@ -42,7 +42,7 @@ generate_single_path(){
 
     # ckpt=average-model.pt
     #ckpt="checkpoint_best.pt"
-    ckpt="avgmodel_45.pt"
+    ckpt="avgmodel_46.pt"
 
     # batched prediction
     python "${FAIRSEQ}/fairseq_cli/generate.py" ${data} \
