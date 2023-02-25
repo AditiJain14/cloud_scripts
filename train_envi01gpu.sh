@@ -112,7 +112,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.45_${lambda}"
+    name="lmloss_latency_0.0_0.45_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -152,7 +152,7 @@ mma_il_lm(){
     --add-language-model \
     --share-lm-decoder-softmax-embed \
     --pretrain-steps 3000 \
-    --token-scale 0.1 --sentence-scale 0.45 \
+    --token-scale 0.0 --sentence-scale 0.45 \
     --wandb-project LM_Adaptive_EnVi \
     --empty-cache-freq 45 --max-epoch 52\
     | tee -a ${TBOARD}/train_log.txt
