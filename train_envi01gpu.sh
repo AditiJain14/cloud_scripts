@@ -166,7 +166,7 @@ mma_il_lm_from_chkpt(){
     lambda=$1
     file=$2
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.3_withchkpt${lambda}"
+    name="lmloss_latency_0.0_0.3_withchkpt${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -205,11 +205,11 @@ mma_il_lm_from_chkpt(){
     --keep-last-epochs 20 \
     --add-language-model \
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 1500 \
-    --token-scale 0.1 --sentence-scale 0.3 \
+    --pretrain-steps 0 \
+    --token-scale 0.0 --sentence-scale 0.3 \
     --wandb-project LM_Adaptive_EnVi \
     --restore-file $file \
-    --empty-cache-freq 45 --max-epoch 50\
+    --empty-cache-freq 45 --max-epoch 10\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
 
@@ -430,8 +430,8 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # wait_info_adaptive_train
 
-mma_il_lm 0.1
+# mma_il_lm 0.1
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
-# mma_il_lm_from_chkpt 0.3 "/home/aditi/mma_runs/experiments/en_vi/infinite/lmloss_pretraineden-vi_0/checkpoints/checkpoint9.pt"
+mma_il_lm_from_chkpt 0 "/home/aditi/mma_runs/experiments/en_vi/infinite/lmloss_latency_0.0_0.45_0.1/checkpoints/checkpoint45.pt"
