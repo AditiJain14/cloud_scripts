@@ -322,7 +322,7 @@ mma_il_freezelmchkpt(){
     mkdir -p ${CKPT} ${TBOARD}
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
-    --source-lang vi --target-lang en \
+    --source-lang en --target-lang vi \
     --log-format simple --log-interval 50 \
     --arch transformer_monotonic_iwslt_de_en \
     --user-dir "${USR}" \
