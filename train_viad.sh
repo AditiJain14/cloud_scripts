@@ -413,8 +413,9 @@ train_lm_only(){
     --share-lm-decoder-softmax-embed \
     --empty-cache-freq 45 \
     --train-only-lm --fp16 \
-    --wandb-project Lm_Adaptive_EnVi --max-epoch 40\ 
+    --wandb-project Lm_Adaptive_EnVi --max-epoch 40 \ 
     | tee -a ${TBOARD}/train_log.txt
+    
 }
 #--use-pretrained-lm \
 #--use-pretrained-lm \
