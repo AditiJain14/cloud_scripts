@@ -2,9 +2,10 @@
 ROOT="/home/aditi/mma_runs"
 # ROOT="path/to/working/dir"
 
-DATA="${ROOT}/data/vi_en/mono-data-bin"
+# DATA="${ROOT}/data/vi_en/mono-data-bin"
+DATA="${ROOT}/data/vi_en/data-bin"
 
-EXPT="${ROOT}/experiments/lm"
+EXPT="${ROOT}/experiments/en_vi"
 mkdir -p ${EXPT}
 
 FAIRSEQ="${ROOT}/mma"
@@ -99,11 +100,11 @@ mma_il_with_pretrained(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 9000 --update-freq 3 \
+    --max-tokens 3300 --update-freq 2 \
     --best-checkpoint-metric "ppl" \
-    --max-epoch 50  --keep-last-epochs 12\
-    --restore-file "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/trained_lm0/checkpoints/checkpoint7.pt" \
-    --tensorboard-logdir ${TBOARD} --wandb-project LM_Adaptive \
+    --max-epoch 50  --keep-last-epochs 15\
+    --restore-file "/home/aditi/mma_runs/experiments/lm/infinite/trained_lm_advi/checkpoints/checkpoint70.pt" \
+    --tensorboard-logdir ${TBOARD} --wandb-project LM_Adaptive_EnVi \
     | tee -a ${TBOARD}/train_log.txt
 
 }
@@ -312,11 +313,11 @@ wait_info_adaptive_ft(){
 #LM Loss with frozen pretrained LM 
 mma_il_freezelmchkpt(){
     lambda=$1
-    name="lmloss_pretrainedfinal50_${lambda}"
+    name="lmloss_pretrainedwithadvi_${lambda}"
     export WANDB_NAME="${name}"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
     TBOARD="${EXPT}/infinite/${name}/logs"
-    pre_path="/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_pretrainedtrial_0/checkpoints/checkpoint7.pt"
+    pre_path= "/home/aditi/mma_runs/experiments/lm/infinite/trained_lm_advi/checkpoints/checkpoint70.pt" 
     #pre_path="/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/trained_lm/checkpoints/checkpoint60.pt"
     mkdir -p ${CKPT} ${TBOARD}
 
@@ -347,7 +348,7 @@ mma_il_freezelmchkpt(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 6750 --update-freq 2 \
+    --max-tokens 3300 --update-freq 2 \
     --best-checkpoint-metric "ppl" \
     --add-language-model \
     --share-lm-decoder-softmax-embed \
@@ -355,9 +356,8 @@ mma_il_freezelmchkpt(){
     --token-scale 0.1 --sentence-scale 0.1 \
     --empty-cache-freq 45 \
     --keep-last-epochs 12\
-    --pretrain-steps 0 --max-epoch 40\
-    --wandb-project LM_Adaptive \
-    --freeze-pretrained-lm \
+    --pretrain-steps 3000 --max-epoch 50\
+    --wandb-project LM_Adaptive_EnVi \
     --pretrained-lm-path $pre_path\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
@@ -432,9 +432,9 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # wait_info_adaptive_ft
 
 # wait_info_adaptive_train
-train_lm_only 0
+# train_lm_only 0
 # mma_il_lm 0.2
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
-
+mma_il_freezelmchkpt 0.1
 # mma_il_lm_from_chkpt 0.2 "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_latency_0.1_0.1forchkpt_0/checkpoints/checkpoint8.pt"
