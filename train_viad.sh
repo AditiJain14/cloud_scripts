@@ -408,11 +408,11 @@ train_lm_only(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 3600 --update-freq 2\
+    --max-tokens 7000 --update-freq 1\
     --add-language-model \
     --share-lm-decoder-softmax-embed \
     --empty-cache-freq 45 \
-    --train-only-lm \
+    --train-only-lm --fp16 \
     --wandb-project Lm_Adaptive_EnVi --max-epoch 40\ 
 }
 #--use-pretrained-lm \
