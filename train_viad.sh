@@ -317,7 +317,7 @@ mma_il_freezelmchkpt(){
     export WANDB_NAME="${name}"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
     TBOARD="${EXPT}/infinite/${name}/logs"
-    pre_path= "/home/aditi/mma_runs/experiments/lm/infinite/trained_lm_advi/checkpoints/checkpoint70.pt" 
+    pre_path="/home/aditi/mma_runs/experiments/lm/infinite/trained_lm_advi/checkpoints/checkpoint70.pt" 
     #pre_path="/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/trained_lm/checkpoints/checkpoint60.pt"
     mkdir -p ${CKPT} ${TBOARD}
 
@@ -358,7 +358,7 @@ mma_il_freezelmchkpt(){
     --keep-last-epochs 12\
     --pretrain-steps 3000 --max-epoch 50\
     --wandb-project LM_Adaptive_EnVi \
-    --pretrained-lm-path $pre_path\
+    --pretrained-lm-path $pre_path \
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
     #--finetune-fix-lm True \
