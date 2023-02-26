@@ -414,6 +414,7 @@ train_lm_only(){
     --empty-cache-freq 45 \
     --train-only-lm --fp16 \
     --wandb-project Lm_Adaptive_EnVi --max-epoch 40\ 
+    | tee -a ${TBOARD}/train_log.txt
 }
 #--use-pretrained-lm \
 #--use-pretrained-lm \
@@ -421,7 +422,7 @@ train_lm_only(){
 
   #--pretrained-lm-path "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_latency_0.1_0.1_0.04/checkpoints/checkpoint_best.pt" \
 ###############################################
-export CUDA_VISIBLE_DEVICES=2,3
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # mma_il 0.05
 # mma_h
