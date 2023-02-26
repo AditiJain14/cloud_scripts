@@ -2,9 +2,9 @@
 ROOT="/home/aditi/mma_runs"
 # ROOT="path/to/working/dir"
 
-DATA="${ROOT}/data/vi_en/data-bin"
+DATA="${ROOT}/data/vi_en/mono-data-bin"
 
-EXPT="${ROOT}/experiments/vi_en"
+EXPT="${ROOT}/experiments/lm"
 mkdir -p ${EXPT}
 
 FAIRSEQ="${ROOT}/mma"
@@ -370,9 +370,10 @@ mma_il_freezelmchkpt(){
 }
 
 
+
 train_lm_only(){
     lambda=$1
-    name="trained_lm_lmloss"
+    name="trained_lm_advi"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -380,7 +381,7 @@ train_lm_only(){
     mkdir -p ${CKPT} ${TBOARD}
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
-    --source-lang vi --target-lang en \
+    --source-lang ad --target-lang vi \
     --log-format simple --log-interval 50 \
     --arch transformer_monotonic_iwslt_de_en \
     --user-dir "${USR}" \
@@ -407,14 +408,14 @@ train_lm_only(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 4500 --update-freq 3 \
+    --max-tokens 3600 --update-freq 2\
     --add-language-model \
     --share-lm-decoder-softmax-embed \
-    --token-scale 0.1 --sentence-scale 0.1 \
     --empty-cache-freq 45 \
-    --train-only-lm --disable-validation \
-    --wandb-project Lm_Adaptive 
+    --train-only-lm \
+    --wandb-project Lm_Adaptive_EnVi --max-epoch 40\ 
 }
+#--use-pretrained-lm \
 #--use-pretrained-lm \
 #--keep-last-epochs 12 \
 
@@ -429,8 +430,8 @@ export CUDA_VISIBLE_DEVICES=2,3
 # wait_info_adaptive_ft
 
 # wait_info_adaptive_train
-
-mma_il_lm 0.2
+train_lm_only 0
+# mma_il_lm 0.2
 # mma_il_lm_pre 0.3
 # mma_il_lm_only 0
 
