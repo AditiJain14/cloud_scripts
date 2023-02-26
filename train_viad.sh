@@ -408,7 +408,7 @@ train_lm_only(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 7000 --update-freq 1\
+    --max-tokens 4000 --update-freq 1\
     --add-language-model \
     --share-lm-decoder-softmax-embed \
     --empty-cache-freq 45 \
