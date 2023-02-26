@@ -41,8 +41,8 @@ generate_single_path(){
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
 
     # ckpt=average-model.pt
-#     ckpt="checkpoint50.pt"
-    ckpt="avgmodel_46.pt"
+    ckpt="checkpointbest.pt"
+#     ckpt="avgmodel_46.pt"
 
     # batched prediction
     python "${FAIRSEQ}/fairseq_cli/generate.py" ${data} \
