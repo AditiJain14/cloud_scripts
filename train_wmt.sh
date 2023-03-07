@@ -151,7 +151,7 @@ mma_il_lm(){
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 30000 --without-latency-steps 2500 --keep-last-epochs 20\
+    --pretrain-steps 30000 --without-latency-steps 3000 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
