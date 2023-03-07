@@ -147,7 +147,7 @@ mma_il_lm(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 2400 --update-freq 4 \
+    --max-tokens 5000 --update-freq 2 \
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed \
