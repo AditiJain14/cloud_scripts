@@ -113,7 +113,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.1_${lambda}"
+    name="lmlossboosted_latency_0.1_0.1_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -151,7 +151,7 @@ mma_il_lm(){
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 30000 --keep-last-epochs 20\
+    --pretrain-steps 30000 --without-latency-steps 3800 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
