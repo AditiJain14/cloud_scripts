@@ -113,7 +113,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_latency_0.1_0.1_fp16${lambda}"
+    name="lmloss_latency_0.1_0.1_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
