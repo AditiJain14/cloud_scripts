@@ -1,5 +1,5 @@
 
-ROOT="/home/mma_runs"
+ROOT="/home/aditi/mma_runs"
 # ROOT="path/to/working/dir"
 
 DATA="${ROOT}/data/de_en/data-bin"
