@@ -153,7 +153,7 @@ mma_il_lm(){
     --share-lm-decoder-softmax-embed \
     --pretrain-steps 12000 --keep-last-epochs 12\
     --token-scale 0.1 --sentence-scale 0.1\
-    --wandb-project LM_Adaptive_DeEn \
+    --wandb-project LM_Adaptive_DeEn --fp16 \
     --empty-cache-freq 45 --max-epoch 30\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
