@@ -151,10 +151,10 @@ mma_il_lm(){
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed \
-    --pretrain-steps 12000 --keep-last-epochs 12\
+    --pretrain-steps 30000 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
-    --empty-cache-freq 45 --max-epoch 30\
+    --empty-cache-freq 45 --max-epoch 65\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
         # --keep-last-epochs 20 \
@@ -433,7 +433,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.25
+mma_il_lm 0.2
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
 # mma_il_lm_from_chkpt 0.4  
