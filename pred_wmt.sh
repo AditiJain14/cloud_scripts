@@ -1,5 +1,5 @@
 
-ROOT="/cs/natlang-expts/aditi/mma_runs"
+ROOT="/home/aditi/mma_runs"
 
 DATA="${ROOT}/data/de_en/data-bin"
 
