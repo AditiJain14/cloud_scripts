@@ -60,7 +60,7 @@ generate_single_path(){
         python "${FAIRSEQ}/fairseq_cli/generate.py" ${data} \
         --path "${modelfile}/${ckpt}" \
         --source-lang "de" --target-lang "en" \
-        --batch-size 50 \
+        --batch-size 500 \
         --beam 1 \
         --left-pad-source \
         --remove-bpe \
