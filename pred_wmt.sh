@@ -49,7 +49,6 @@ generate_single_path(){
     --batch-size 500 \
     --beam 1 \
     --left-pad-source \
-    --remove-bpe \
     > "${RES}/pred.out"
 
     grep ^H "${RES}/pred.out" | cut -f1,3- | cut -c3- | sort -k1n | cut -f2- > "${RES}/pred.translation"
