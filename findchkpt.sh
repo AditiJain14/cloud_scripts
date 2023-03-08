@@ -2,9 +2,9 @@
 
 ROOT="/home/aditi/mma_runs"
 
-DATA="${ROOT}/data/vi_en/data-bin"
+DATA="${ROOT}/data/de_en/data-bin"
 
-EXP="${ROOT}/experiments/en_vi"
+EXP="${ROOT}/experiments/de_en"
 
 ###############
 # name="base"
@@ -44,7 +44,7 @@ generate_single_path(){
         ckpt="avgmodel_${bound}.pt"
 
         echo "averaging checkpoints uptil $i"
-        python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 3 --checkpoint-upper-bound $bound --output ${modelfile}/${ckpt} 
+        python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 5 --checkpoint-upper-bound $bound --output ${modelfile}/${ckpt} 
 
         #ckpt="checkpoint_best.pt"
         # ckpt="checkpoint40.pt"
@@ -76,7 +76,7 @@ generate_single_path(){
         # write scores to a file for easy tracking
         tail -n 5 "${RES}/${split}/${pred}/pred.out" > "${RES}/${split}/${pred}/score_summary.txt"
 
-        raw_ref="${DATA}/../raw/${split}.vi"
+        raw_ref="${DATA}/../raw/${split}.en"
         # lower cased
         echo "lower-cased:--" >> "${RES}/${split}/${pred}/score_summary.txt" 
         perl "${FAIRSEQ}/multi-bleu.perl" -lc "${RES}/${split}/${pred}/pred.ref" < "${RES}/${split}/${pred}/pred.translation" >> "${RES}/${split}/${pred}/score_summary.txt" 
@@ -97,4 +97,4 @@ generate_single_path(){
 
 ##############
 # generate_single_path [split] [upper] [lower]
-generate_single_path valid 48 39
+generate_single_path valid 33 25
