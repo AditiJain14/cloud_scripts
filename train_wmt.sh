@@ -433,7 +433,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.2
+mma_il_lm 0.3
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
 # mma_il_lm_from_chkpt 0.4  
