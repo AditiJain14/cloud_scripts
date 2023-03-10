@@ -38,8 +38,8 @@ generate_single_path(){
     # bsz 1 prediction
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
 
-#     ckpt=avgmodel_33.pt
-    ckpt="checkpoint_best.pt"
+    ckpt=avgmodel_62.pt
+#     ckpt="checkpoint_best.pt"
     # ckpt="checkpoint40.pt"
 
     # batched prediction
