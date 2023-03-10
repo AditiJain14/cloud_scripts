@@ -97,4 +97,4 @@ generate_single_path(){
 
 ##############
 # generate_single_path [split] [upper] [lower]
-generate_single_path valid 62 61
+generate_single_path valid 60 50
