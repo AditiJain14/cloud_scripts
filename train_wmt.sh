@@ -152,7 +152,7 @@ mma_il_lm(){
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
     --pretrain-steps 30000 --without-latency-steps 4500 --keep-last-epochs 20\
-    --token-scale 0.1 --sentence-scale 0.1 --disable-validation\
+    --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
     | tee -a ${TBOARD}/train_log.txt
