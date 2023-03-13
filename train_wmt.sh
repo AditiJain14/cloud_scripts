@@ -169,7 +169,7 @@ mma_il_lm(){
 mma_il_lm_from_chkpt(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmloss_pretraineden-vi_${lambda}"
+    name="lmlossboostedredo2_latency_0.1_0.1_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -177,8 +177,8 @@ mma_il_lm_from_chkpt(){
     mkdir -p ${CKPT} ${TBOARD}
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
-    --source-lang en --target-lang vi \
-    --log-format simple --log-interval 50 \
+    --source-lang de --target-lang en \
+    --log-format simple --log-interval 100 \
     --arch transformer_monotonic_iwslt_de_en \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
@@ -194,8 +194,8 @@ mma_il_lm_from_chkpt(){
     --dropout 0.3 \
     --criterion latency_augmented_label_smoothed_cross_entropy_cbmi \
     --label-smoothing 0.1 \
-    --encoder-attention-heads 4 \
-    --decoder-attention-heads 4 \
+    --encoder-attention-heads 8 \
+    --decoder-attention-heads 8 \
     --max-update 100000 \
     --latency-weight-avg  ${lambda} \
     --noise-var 1.5 \
@@ -203,18 +203,23 @@ mma_il_lm_from_chkpt(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 3375 --update-freq 4 \
+    --max-tokens 5000 --update-freq 2 \
     --best-checkpoint-metric "ppl" \
-    --keep-last-epochs 15 \
-    --add-language-model \
-    --share-lm-decoder-softmax-embed \
-    --pretrain-steps 3000 \
-    --token-scale 0.1 --sentence-scale 0.1 \
-    --wandb-project LM_Adaptive_EnVi \
-    --restore-file "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_pretraineden-vi_0/checkpoints/checkpoint12.pt" \
-    --empty-cache-freq 45 --max-epoch 52\
+    --add-language-model\
+    --share-lm-decoder-softmax-embed --share-all-embeddings\
+    --pretrain-steps 30000 --without-latency-steps 6000 --keep-last-epochs 20\
+    --token-scale 0.1 --sentence-scale 0.1\
+    --wandb-project LM_Adaptive_DeEn\
+    --empty-cache-freq 45 --max-epoch 65\
+    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboostedredo_latency_0.1_0.1_0.3/checkpoints/checkpoint3.pt"\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
+        # --keep-last-epochs 20 \
+    #dont use cbmi loss for getting checkpoints for lambda>0.1, set pretrain-steps high. 
+    #This will also train LM decoder with rate lm_rate*10
+    #load this checkpoint for lambda>0.1 runs 
+    #\
+
 
 }
 
