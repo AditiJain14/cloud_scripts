@@ -207,11 +207,11 @@ mma_il_lm_from_chkpt(){
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
-    --pretrain-steps 30000 --without-latency-steps 6000 --keep-last-epochs 20\
+    --pretrain-steps 30000 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
-    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboostedredo_latency_0.1_0.1_0.3/checkpoints/checkpoint3.pt"\
+    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint3.pt"\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
         # --keep-last-epochs 20 \
