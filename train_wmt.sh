@@ -169,7 +169,7 @@ mma_il_lm(){
 mma_il_lm_from_chkpt(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossboostedredo2_latency_0.1_0.1_${lambda}"
+    name="lmlossboostedredo3_latency_0.1_0.1_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
