@@ -211,7 +211,7 @@ mma_il_lm_from_chkpt(){
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
-    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint3.pt"\
+    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint5.pt"\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
         # --keep-last-epochs 20 \
