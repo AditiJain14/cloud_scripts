@@ -211,9 +211,9 @@ mma_il_lm_from_chkpt(){
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
-    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint5.pt"\
     | tee -a ${TBOARD}/train_log.txt
-    # --tensorboard-logdir ${TBOARD} \
+    # --tensorboard-logdir ${TBOARD}\
+#         --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint5.pt"\
         # --keep-last-epochs 20 \
     #dont use cbmi loss for getting checkpoints for lambda>0.1, set pretrain-steps high. 
     #This will also train LM decoder with rate lm_rate*10
