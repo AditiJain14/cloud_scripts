@@ -123,7 +123,7 @@ mma_il_lm(){
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang de --target-lang en \
     --log-format simple --log-interval 100 \
-    --arch transformer_monotonic_iwslt_de_en \
+    --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
     --mass-preservation \
@@ -179,7 +179,7 @@ mma_il_lm_from_chkpt(){
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang de --target-lang en \
     --log-format simple --log-interval 100 \
-    --arch transformer_monotonic_iwslt_de_en \
+    --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
     --mass-preservation \
@@ -331,7 +331,7 @@ mma_il_freezelmchkpt(){
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang en --target-lang vi \
     --log-format simple --log-interval 50 \
-    --arch transformer_monotonic_iwslt_de_en \
+    --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
     --mass-preservation \
@@ -389,7 +389,7 @@ train_lm_only(){
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang en --target-lang vi \
     --log-format simple --log-interval 50 \
-    --arch transformer_monotonic_iwslt_de_en \
+    --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
     --mass-preservation \
