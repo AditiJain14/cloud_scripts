@@ -40,7 +40,7 @@ generate_single_path(){
 
 #     ckpt=avgmodel_60.pt
 #     ckpt="checkpoint_best.pt"
-      ckpt="average_checkpoints.py"
+      ckpt="average-model.pt"
     # ckpt="checkpoint40.pt"
 
     # batched prediction
