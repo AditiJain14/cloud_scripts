@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmlossboostedredo3_latency_0.1_0.1_0.3" #"latency_${lambda}"
+    name="lmlossApril8_0.2" #"latency_${lambda}"
 
     EXPT="${EXP}/infinite/${name}"
     RES="${EXPT}/results/action"
@@ -33,13 +33,14 @@ generate_single_path(){
     modelfile="${EXPT}/checkpoints"
 
     # average last 5 checkpoints
-    # python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 5 --checkpoint-upper-bound 42 --output ${modelfile}/average-model.pt 
+    python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 3 --checkpoint-upper-bound 17 --output ${modelfile}/average-model.pt 
 
     # bsz 1 prediction
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
 
 #     ckpt=avgmodel_60.pt
-    ckpt="checkpoint_best.pt"
+#     ckpt="checkpoint_best.pt"
+      ckpt="average_checkpoints.py"
     # ckpt="checkpoint40.pt"
 
     # batched prediction
