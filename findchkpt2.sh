@@ -9,7 +9,7 @@ EXP="${ROOT}/experiments/de_en"
 ###############
 # name="base"
 # testk=3
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 ###############
 
 # EXPT="${ROOT}/experiments/iwslt14_ende/${name}"
