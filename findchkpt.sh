@@ -28,7 +28,7 @@ generate_single_path(){
     ckpt_upper=$2
     ckpt_lower=$3
 
-    name="lmlossboosted_latency_0.1_0.1_0.2" #"latency_${lambda}"
+    name="lmlossApril8_0.2" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
 #     name="lmloss_pretraineden-vi_0.3"
@@ -44,7 +44,7 @@ generate_single_path(){
         ckpt="avgmodel_${bound}.pt"
 
         echo "averaging checkpoints uptil $i"
-        python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 5 --checkpoint-upper-bound $bound --output ${modelfile}/${ckpt} 
+        python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 3 --checkpoint-upper-bound $bound --output ${modelfile}/${ckpt} 
 
         #ckpt="checkpoint_best.pt"
         # ckpt="checkpoint40.pt"
@@ -97,4 +97,4 @@ generate_single_path(){
 
 ##############
 # generate_single_path [split] [upper] [lower]
-generate_single_path valid 60 50
+generate_single_path valid 33 15
