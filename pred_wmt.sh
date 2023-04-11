@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmlossApril8_0.2" #"latency_${lambda}"
+    name="lmlossApril8_0.3" #"latency_${lambda}"
 
     EXPT="${EXP}/infinite/${name}"
     RES="${EXPT}/results/action"
@@ -38,7 +38,7 @@ generate_single_path(){
     # bsz 1 prediction
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
 
-    ckpt=avgmodel_32.pt
+    ckpt=avgmodel_33.pt
 #     ckpt="checkpoint_best.pt"
 #       ckpt="average-model.pt"
     # ckpt="checkpoint40.pt"
