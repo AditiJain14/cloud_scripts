@@ -169,7 +169,7 @@ mma_il_lm(){
 mma_il_lm_from_chkpt(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossboostedredo3_latency_0.1_0.1_${lambda}"
+    name="lmlossApril11_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -178,7 +178,7 @@ mma_il_lm_from_chkpt(){
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang de --target-lang en \
-    --log-format simple --log-interval 100 \
+    --log-format simple --log-interval 500 \
     --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
@@ -186,7 +186,7 @@ mma_il_lm_from_chkpt(){
     --optimizer adam \
     --adam-betas '(0.9, 0.98)' \
     --clip-norm 0.0 \
-    --lr 5e-4 \
+    --lr 2e-4 \
     --weight-decay 0.0001 \
     --lr-scheduler 'inverse_sqrt' \
     --warmup-init-lr 1e-07 \
@@ -203,17 +203,18 @@ mma_il_lm_from_chkpt(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 5000 --update-freq 4 \
+    --max-tokens 10000 --update-freq 1 \
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
-    --pretrain-steps 30000 --keep-last-epochs 20\
+    --pretrain-steps 5000 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
-    --empty-cache-freq 45 --max-epoch 65\
+    --empty-cache-freq 45 --max-epoch 45\
+    --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlossApril8_0.2/checkpoints/checkpoint14.pt"\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD}\
-#         --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlatency0/checkpoints/checkpoint5.pt"\
+#         
         # --keep-last-epochs 20 \
     #dont use cbmi loss for getting checkpoints for lambda>0.1, set pretrain-steps high. 
     #This will also train LM decoder with rate lm_rate*10
@@ -438,7 +439,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.3
+# mma_il_lm 0.3
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
-# mma_il_lm_from_chkpt 0.3  
+mma_il_lm_from_chkpt 0.5  
