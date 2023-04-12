@@ -152,7 +152,7 @@ mma_il_lm(){
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
     --pretrain-steps 30000 --without-latency-steps 4500 --keep-last-epochs 20\
-    --token-scale 0.1 --sentence-scale 0.1\
+    --token-scale 0.1 --sentence-scale 0.3\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 65\
     | tee -a ${TBOARD}/train_log.txt
@@ -169,7 +169,7 @@ mma_il_lm(){
 mma_il_lm_from_chkpt(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossApril11_${lambda}"
+    name="lmlossApril11_0.1_0.3${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -208,7 +208,7 @@ mma_il_lm_from_chkpt(){
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
     --pretrain-steps 5000 --keep-last-epochs 20\
-    --token-scale 0.1 --sentence-scale 0.1\
+    --token-scale 0.1 --sentence-scale 0.3\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 45\
     --restore-file "/home/aditi/mma_runs/experiments/de_en/infinite/lmlossApril8_0.2/checkpoints/checkpoint14.pt"\
@@ -442,4 +442,4 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # mma_il_lm 0.3
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
-mma_il_lm_from_chkpt 0.5  
+mma_il_lm_from_chkpt 0.4  
