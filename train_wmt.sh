@@ -122,7 +122,7 @@ mma_il_lm(){
 
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang de --target-lang en \
-    --log-format simple --log-interval 100 \
+    --log-format simple --log-interval 500 \
     --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
@@ -154,7 +154,7 @@ mma_il_lm(){
     --pretrain-steps 30000 --without-latency-steps 4500 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.3\
     --wandb-project LM_Adaptive_DeEn\
-    --empty-cache-freq 45 --max-epoch 65\
+    --empty-cache-freq 45 --max-epoch 40\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
         # --keep-last-epochs 20 \
@@ -439,7 +439,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-# mma_il_lm 0.3
+mma_il_lm 0.25
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
-mma_il_lm_from_chkpt 0.4  
+# mma_il_lm_from_chkpt 0.4  
