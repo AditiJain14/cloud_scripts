@@ -147,11 +147,11 @@ mma_il_lm(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 10000 --update-freq 1 \
+    --max-tokens 9000 --update-freq 1 \
     --best-checkpoint-metric "ppl" \
     --add-language-model\
-    --share-lm-decoder-softmax-embed --share-all-embeddings\
-    --pretrain-steps 30000 --without-latency-steps 4500 --keep-last-epochs 20\
+    --share-lm-decoder-softmax-embed\
+    --pretrain-steps 30000 --without-latency-steps 3800 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.3\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 40\
