@@ -113,7 +113,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossApril8_${lambda}"
+    name="lmlossApril13_${lambda}"
     export WANDB_NAME="${name}"
 
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -439,7 +439,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.4
+mma_il_lm 0.3
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
 # mma_il_lm_from_chkpt 0.4  
