@@ -28,7 +28,7 @@ generate_single_path(){
     ckpt_upper=$2
     ckpt_lower=$3
 
-    name="lmlossApril8_0.4 " #"latency_${lambda}"
+    name="lmlossApril8_0.4" #"latency_${lambda}"
     # name="single_path_latencyen-vi_0.4"
     # name="lmloss_latency_0.1_0.1en-viboostlm_0.2"
 #     name="lmloss_pretraineden-vi_0.3"
