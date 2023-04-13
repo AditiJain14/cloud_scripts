@@ -41,8 +41,8 @@ generate_single_path(){
     # average last 5 checkpoints
     for ((i=$ckpt_upper; i>=$ckpt_lower; i--)); do
         bound=$i
-#         ckpt="avgmodel_${bound}.pt"
-          ckpt="average-model.pt"
+        ckpt="avgmodel_${bound}.pt"
+#           ckpt="average-model.pt"
 
         echo "averaging checkpoints uptil $i"
         python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 5 --checkpoint-upper-bound $bound --output ${modelfile}/${ckpt} 
