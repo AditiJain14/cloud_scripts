@@ -113,7 +113,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossApril13_0.1_0.1${lambda}"
+    name="lmlossApril14_0.1_0.3${lambda}"
     export WANDB_NAME="${name}"
     pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossApril8_0.4/checkpoints/checkpoint_last.pt"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -123,7 +123,7 @@ mma_il_lm(){
     python ${FAIRSEQ}/train.py  --ddp-backend=no_c10d ${DATA} \
     --source-lang de --target-lang en \
     --log-format simple --log-interval 500 \
-    --arch transformer_monotonic_vaswani_wmt_en_de_big \
+    --arch transformer_monotonic_wmt \
     --user-dir "${USR}" \
     --simul-type infinite_lookback \
     --mass-preservation \
@@ -147,7 +147,7 @@ mma_il_lm(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 10000 --update-freq 1 \
+    --max-tokens 9000 --update-freq 4 \
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed\
