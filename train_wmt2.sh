@@ -113,9 +113,9 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossApril13Big_${lambda}"
+    name="lmlossApril13_${lambda}"
     export WANDB_NAME="${name}"
-
+    pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboosted_latency_0.1_0.1_0.2/checkpoints"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
     TBOARD="${EXPT}/infinite/${name}/logs"
     mkdir -p ${CKPT} ${TBOARD}
@@ -138,8 +138,8 @@ mma_il_lm(){
     --dropout 0.2 \
     --criterion latency_augmented_label_smoothed_cross_entropy_cbmi \
     --label-smoothing 0.1 \
-    --encoder-attention-heads 16 \
-    --decoder-attention-heads 16 \
+    --encoder-attention-heads 8 \
+    --decoder-attention-heads 8 \
     --max-update 100000 \
     --latency-weight-avg  ${lambda} \
     --noise-var 1.5 \
@@ -151,10 +151,11 @@ mma_il_lm(){
     --best-checkpoint-metric "ppl" \
     --add-language-model\
     --share-lm-decoder-softmax-embed --share-all-embeddings\
-    --pretrain-steps 30000 --without-latency-steps 4500 --keep-last-epochs 20\
-    --token-scale 0.1 --sentence-scale 0.3\
+    --pretrain-steps 10000 --without-latency-steps 4500 --keep-last-epochs 20\
+    --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 40\
+    --pretrained-lm-path $pre_path\
     | tee -a ${TBOARD}/train_log.txt
     # --tensorboard-logdir ${TBOARD} \
         # --keep-last-epochs 20 \
@@ -438,7 +439,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.75
+mma_il_lm 0.3
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
 # mma_il_lm_from_chkpt 0.5  
