@@ -113,7 +113,7 @@ mma_il_with_pretrained(){
 mma_il_lm(){
     lambda=$1
     # name="single_path_latency_${lambda}"
-    name="lmlossApril13_${lambda}"
+    name="lmlossApril13_0.1_0.1${lambda}"
     export WANDB_NAME="${name}"
     pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboosted_latency_0.1_0.1_0.2/checkpoints/checkpoint55.pt"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
@@ -152,7 +152,7 @@ mma_il_lm(){
     --add-language-model\
     --share-lm-decoder-softmax-embed\
     --pretrain-steps 10000 --without-latency-steps 4500 --keep-last-epochs 20\
-    --token-scale 0.1 --sentence-scale 0.1\
+    --token-scale 0.1 --sentence-scale 0.3\
     --wandb-project LM_Adaptive_DeEn\
     --empty-cache-freq 45 --max-epoch 40\
     --pretrained-lm-path $pre_path\
