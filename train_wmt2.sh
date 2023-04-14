@@ -147,10 +147,10 @@ mma_il_lm(){
     --single-path \
     --dual-weight 0.0 \
     --save-dir $CKPT \
-    --max-tokens 7000 --update-freq 1 \
+    --max-tokens 10000 --update-freq 1 \
     --best-checkpoint-metric "ppl" \
     --add-language-model\
-    --share-lm-decoder-softmax-embed --share-all-embeddings\
+    --share-lm-decoder-softmax-embed\
     --pretrain-steps 10000 --without-latency-steps 4500 --keep-last-epochs 20\
     --token-scale 0.1 --sentence-scale 0.1\
     --wandb-project LM_Adaptive_DeEn\
@@ -428,7 +428,7 @@ train_lm_only(){
 
   #--pretrained-lm-path "/cs/natlang-expts/aditi/mma_runs/experiments/vi_en/infinite/lmloss_latency_0.1_0.1_0.04/checkpoints/checkpoint_best.pt" \
 ###############################################
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export CUDA_VISIBLE_DEVICES=4,5,6,7
 
 # mma_il 0.3
 # train_lm_only 0
