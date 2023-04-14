@@ -115,7 +115,7 @@ mma_il_lm(){
     # name="single_path_latency_${lambda}"
     name="lmlossApril13_${lambda}"
     export WANDB_NAME="${name}"
-    pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboosted_latency_0.1_0.1_0.2/checkpoints"
+    pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboosted_latency_0.1_0.1_0.2/checkpoints/checkpoint55.pt"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
     TBOARD="${EXPT}/infinite/${name}/logs"
     mkdir -p ${CKPT} ${TBOARD}
@@ -140,7 +140,7 @@ mma_il_lm(){
     --label-smoothing 0.1 \
     --encoder-attention-heads 8 \
     --decoder-attention-heads 8 \
-    --max-update 100000 \
+    --max-update 120000 \
     --latency-weight-avg  ${lambda} \
     --noise-var 1.5 \
     --left-pad-source \
@@ -439,7 +439,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 # mma_il_freezelmchkpt 0
 # wait_info_adaptive_train
 # mma_il_with_pretrained 0.4
-mma_il_lm 0.3
+mma_il_lm 0.35
 # mma_il_lm_pre 0.4
 # mma_il_lm_only 0
 # mma_il_lm_from_chkpt 0.5  
