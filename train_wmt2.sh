@@ -115,7 +115,7 @@ mma_il_lm(){
     # name="single_path_latency_${lambda}"
     name="lmlossApril13_0.1_0.1${lambda}"
     export WANDB_NAME="${name}"
-    pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossboosted_latency_0.1_0.1_0.2/checkpoints/checkpoint55.pt"
+    pre_path="/home/aditi/mma_runs/experiments/de_en/infinite/lmlossApril8_0.4/checkpoints/checkpoint_last.pt"
     CKPT="${EXPT}/infinite/${name}/checkpoints"
     TBOARD="${EXPT}/infinite/${name}/logs"
     mkdir -p ${CKPT} ${TBOARD}
