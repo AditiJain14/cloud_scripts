@@ -8,7 +8,7 @@ EXP="${ROOT}/experiments/de_en"
 ###############
 # name="base"
 # testk=3
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=1
 ###############
 
 # EXPT="${ROOT}/experiments/iwslt14_ende/${name}"
@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmlossApril11_0.1_0.30.4" #"latency_${lambda}"
+    name="lmlossApril14_0.1_0.1_0.3" #"latency_${lambda}"
 
     EXPT="${EXP}/infinite/${name}"
     RES="${EXPT}/results/action"
@@ -33,7 +33,7 @@ generate_single_path(){
     modelfile="${EXPT}/checkpoints"
 
     # average last 5 checkpoints
-    python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 3 --checkpoint-upper-bound 33 --output ${modelfile}/average-model.pt 
+    python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 5 --checkpoint-upper-bound 29 --output ${modelfile}/average-model.pt 
 
     # bsz 1 prediction
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
