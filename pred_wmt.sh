@@ -24,7 +24,7 @@ data="${DATA}"
 generate_single_path(){
     lambda=0.04 #$1
 
-    name="lmlossApril8_0.4" #"latency_${lambda}"
+    name="lmlossApril14_0.1_0.1_0.3" #"latency_${lambda}"
 
     EXPT="${EXP}/infinite/${name}"
     RES="${EXPT}/results/action"
