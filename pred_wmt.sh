@@ -33,7 +33,7 @@ generate_single_path(){
     modelfile="${EXPT}/checkpoints"
 
     # average last 5 checkpoints
-    python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 6 --checkpoint-upper-bound 29 --output ${modelfile}/average-model.pt 
+    python "${FAIRSEQ}/scripts/average_checkpoints.py" --inputs ${modelfile} --num-epoch-checkpoints 2 --checkpoint-upper-bound 29 --output ${modelfile}/average-model.pt 
 
     # bsz 1 prediction
     # python generate.py ${DATA} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --fp16  --remove-bpe --test-wait-k ${testk} --sim-decoding > pred.out
